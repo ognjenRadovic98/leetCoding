@@ -13,16 +13,12 @@ class Solution {
         }
         
         if(left <= 1){
-            if(left == 1) {ListNode storeFinalNode = header;} 
-                  // this keeps to stored 2
-            ListNode temp = header.next;        // this keeps 3 stored
+            if(left == 1) {ListNode storeFinalNode = header;} // this stores the new end so 4->3->2 it would store the 2 so i can make 2->5
+            ListNode temp = header.next;        
             ListNode currentHead = header;
             currentHead.next = prev;
-            ListNode currentPrevious = currentHead;
-            
-            //this makes 2 point backwards
-            
-            helper(temp, currentPrevious, left, right-1);
+            ListNode currentPrevious = currentHead;            
+           return helper(temp, currentPrevious, left, right-1);
         }
         
         return helper(header.next, header,left-1, right-1);
