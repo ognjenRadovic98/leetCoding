@@ -14,7 +14,7 @@ class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode temp = head;
         int counter = 0;
-        HashMap<Integer,ListNode> storage = new HashMap<Integer,ListNode>();
+        HashMap<Integer,ListNode> storage = new HashMap<Integer,ListNode>();            //Could alternatively use arrayList. 
         
         while(temp!= null){
             storage.put(counter, temp);
