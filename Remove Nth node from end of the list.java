@@ -7,7 +7,7 @@
  *     ListNode(int val) { this.val = val; }
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  *     Input: head = [1,2,3,4,5], n = 2
- *     Output: [1,2,3,5]
+ *     Output: [1,2,3,5]            n <= listSize
  * }
  */
 class Solution {
