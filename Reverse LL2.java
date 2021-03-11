@@ -1,25 +1,40 @@
-class Solution {
+/*Given the head of a singly linked list and two integers left and right where left <= right, reverse the nodes of the list from position left to position right, and return the reversed list.
+class */ 
+Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        int runAmount = left - right;
-        if(runAmount == 0) return head;
+    	if(right-left == 0) return head; 
+        ListNode header = head;
+    	ListNode temp = head;
+    	ListNode firstBeforeSwap = null;
+    	ListNode firstSwap = null;
+    	ListNode firstAfterSwap = null;
         
-        return helper(head,null,left,right);
         
+    	for(int i = 1; i <= right; i++) {
+    		if(i == left) firstSwap = temp;
+    		if(i == left - 1) firstBeforeSwap = temp;
+    		if(i == right) firstAfterSwap = temp.next;
+    		temp = temp.next;
+    	}
+        
+    	if(left > 1) {
+    	    firstBeforeSwap.next = helper(firstSwap,firstAfterSwap,right-left+1);
+    	    return header;
+    	}
+    	else{
+    		return helper(header,firstAfterSwap,right-left+1);
+    	}
     }
     
-    public ListNode helper(ListNode header, ListNode prev, int left, int right){
-        if(right == 0){
+    public ListNode helper(ListNode header, ListNode prev, int runAmount){
+        if(runAmount == 0 || header == null){
             return prev;
         }
-        
-        if(left <= 1){
-            if(left == 1) {ListNode storeFinalNode = header;} // this stores the new end so 4->3->2 it would store the 2 so i can make 2->5
-            ListNode temp = header.next;        
-            ListNode currentHead = header;
-            currentHead.next = prev;
-            ListNode currentPrevious = currentHead;            
-           return helper(temp, currentPrevious, left, right-1);
-        }
-        
-        return helper(header.next, header,left-1, right-1);
+        ListNode temp = header;
+        temp = temp.next;
+        ListNode curHead =  header;
+        curHead.next = prev; 
+        return helper(temp,curHead, runAmount-1);        
     }
+    
+}
